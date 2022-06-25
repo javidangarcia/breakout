@@ -7,14 +7,18 @@ WINDOW = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Breakout")
 
 # COLORS
-BACKGROUND = (234, 218, 184)
+BEIGE = (234, 218, 184)
 RED = (242, 85, 96)
 GREEN = (86, 174, 87)
 BLUE = (69, 177, 232)
+GRAY = (142, 135, 123)
+BLACK = (100, 100, 100)
 
 # GAME VARIABLES
 ROWS = 6
 COLS = 6
+clock = pygame.time.Clock()
+FPS = 60
 
 class Wall():
     def __init__(self):
@@ -50,16 +54,46 @@ class Wall():
                 elif block[1] == 1:
                     block_color = RED
                 pygame.draw.rect(WINDOW, block_color, block[0])
-                pygame.draw.rect(WINDOW, BACKGROUND, block[0], 1)
+                pygame.draw.rect(WINDOW, BEIGE, block[0], 1)
+
+
+class Paddle():
+    def __init__(self):
+        self.height = 20
+        self.width = WIDTH / COLS
+        self.x = WIDTH / 2 - self.width / 2
+        self.y = HEIGHT - (self.height * 2)
+        self.speed = 10
+        self.paddle = pygame.Rect(self.x, self.y, self.width, self.height)
+        self.direction = 0
+    
+    def move_paddle(self):
+        self.direction = 0
+        key_pressed = pygame.key.get_pressed()
+        if key_pressed[pygame.K_a] and self.paddle.x > 0:
+            self.paddle.x -= self.speed
+            self.direction = -1
+        elif key_pressed[pygame.K_d] and self.paddle.x + self.width < WIDTH:
+            self.paddle.x += self.speed
+            self.direction = 1
+
+    def draw_paddle(self):
+        pygame.draw.rect(WINDOW, GRAY, self.paddle)
+        pygame.draw.rect(WINDOW, BLACK, self.paddle, 3)
+
 
 wall = Wall()
 wall.create_wall()
+paddle = Paddle()
 
 run = True
 while run:
 
-    WINDOW.fill(BACKGROUND)
+    clock.tick(FPS)
+    WINDOW.fill(BEIGE)
     wall.draw_wall()
+    paddle.draw_paddle()
+    paddle.move_paddle()
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
