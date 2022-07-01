@@ -25,7 +25,7 @@ def main():
         paddle.draw_paddle()
         paddle.move_paddle()
         ball.draw_ball()
-        ball.move_ball()
+        ball.move_ball(paddle, wall)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
