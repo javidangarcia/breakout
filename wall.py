@@ -29,10 +29,10 @@ class Wall():
         for block_row in self.blocks:
             for block in block_row:
                 if block[1] == 3:
-                    block_color = BLUE
+                    block_color = RED
                 elif block[1] == 2:
                     block_color = GREEN
                 elif block[1] == 1:
-                    block_color = RED
+                    block_color = BLUE
                 pygame.draw.rect(WINDOW, block_color, block[0])
                 pygame.draw.rect(WINDOW, BEIGE, block[0], 1)

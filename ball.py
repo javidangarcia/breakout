@@ -3,14 +3,7 @@ from constants import *
 
 class Ball():
     def __init__(self, x, y):
-        self.radius = 10
-        self.x = x - self.radius
-        self.y = y
-        self.ball = pygame.Rect(self.x, self.y, self.radius * 2, self.radius * 2)
-        self.speed_x = 4
-        self.speed_y = -4
-        self.max_speed = 5
-        self.game_over = 0
+        self.reset(x, y)
 
     def move_ball(self, paddle, wall):
 
@@ -66,5 +59,15 @@ class Ball():
         return self.game_over
 
     def draw_ball(self):
-        pygame.draw.circle(WINDOW, GRAY, (self.ball.x + self.radius, self.ball.y + self.radius), self.radius)
-        pygame.draw.circle(WINDOW, BLACK, (self.ball.x + self.radius, self.ball.y + self.radius), self.radius, 3)
+        pygame.draw.circle(WINDOW, RED, (self.ball.x + self.radius, self.ball.y + self.radius), self.radius)
+        pygame.draw.circle(WINDOW, WHITE, (self.ball.x + self.radius, self.ball.y + self.radius), self.radius, 3)
+
+    def reset(self, x, y):
+        self.radius = 10
+        self.x = x - self.radius
+        self.y = y
+        self.ball = pygame.Rect(self.x, self.y, self.radius * 2, self.radius * 2)
+        self.speed_x = 4
+        self.speed_y = -4
+        self.max_speed = 5
+        self.game_over = 0
