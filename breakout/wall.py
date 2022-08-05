@@ -1,5 +1,5 @@
 import pygame
-from constants import *
+from breakout.constants import *
 
 class Wall():
     def __init__(self):

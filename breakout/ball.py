@@ -1,5 +1,5 @@
 import pygame
-from constants import *
+from breakout.constants import *
 
 class Ball():
     def __init__(self, x, y):

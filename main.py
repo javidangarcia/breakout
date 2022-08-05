@@ -1,8 +1,8 @@
 import pygame
-from constants import *
-from wall import Wall
-from paddle import Paddle
-from ball import Ball
+from breakout.constants import *
+from breakout.wall import Wall
+from breakout.paddle import Paddle
+from breakout.ball import Ball
 
 pygame.init()
 pygame.display.set_caption("Breakout")
